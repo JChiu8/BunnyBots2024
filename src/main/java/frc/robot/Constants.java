@@ -19,11 +19,11 @@ public final class Constants {
   }
 
   public static class MotorIDContstants {
-    public static final int kTurretID = 0;
-    public static final int kFanID = 0;
-    public static final int kLeftArmID = 0;
-    public static final int kRightArmID = 0;
-    public static final int kRollerID = 0;
+    public static final int kTurretID = 15;
+    public static final int kFanID = 13;
+    public static final int kLeftArmID = 14;
+    public static final int kRightArmID = 10;
+    public static final int kRollerID = 12;
 
   }
 
