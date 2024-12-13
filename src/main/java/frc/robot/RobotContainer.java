@@ -66,10 +66,23 @@ public class RobotContainer {
       () -> .5 * -MathUtil.applyDeadband(m_driverController.getRightX(), .1)),
       swerver));
 
-    // hold x to lock robot in place
+    // Make sure motors stop when buttons are released
+    roller.setDefaultCommand(Commands.run(() -> roller.setRollerVoltage(0), roller));
+    rotator.setDefaultCommand(Commands.run(() -> rotator.setRotatorVoltage(0), rotator));
+    fan.setDefaultCommand(Commands.run(() -> fan.setFanSpeed(0), fan));
+    turret.setDefaultCommand(Commands.run(() -> turret.setTurretVoltage(0), turret));
+
+    // driver can hold x to lock robot in place
     m_driverController.x().whileTrue(Commands.run(() -> swerver.lock(), swerver));
 
-
+    m_operatorController.povUp().whileTrue(Commands.run(() -> rotator.setRotatorVoltage(1), rotator));
+    m_operatorController.povDown().whileTrue(Commands.run(() -> rotator.setRotatorVoltage(-1), rotator));
+    m_operatorController.rightBumper().whileTrue(Commands.run(() -> roller.setRollerVoltage(1), roller));
+    m_operatorController.leftBumper().whileTrue(Commands.run(() -> roller.setRollerVoltage(-1), roller));
+    m_operatorController.x().whileTrue(Commands.run(() -> turret.setTurretVoltage(1), turret));
+    m_operatorController.b().whileTrue(Commands.run(() -> turret.setTurretVoltage(-1), turret));
+    m_operatorController.y().whileTrue(Commands.run(() -> fan.setFanVoltage(11), fan));
+    m_operatorController.a().whileTrue(Commands.run(() -> fan.setFanVoltage(-11), fan));
   }
 
   /**

@@ -13,6 +13,8 @@ public class RotatorSubsystem extends SubsystemBase {
     public RotatorSubsystem() {
         leftArm = new CANSparkMax(MotorIDContstants.kLeftArmID, CANSparkLowLevel.MotorType.kBrushless);
         rightArm = new CANSparkMax(MotorIDContstants.kRightArmID, CANSparkLowLevel.MotorType.kBrushless);
+        leftArm.setInverted(true);
+        rightArm.setInverted(false);
     }
 
     public void setRotatorSpeed(double speed) {
